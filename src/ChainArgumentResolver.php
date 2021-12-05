@@ -13,6 +13,7 @@ declare(strict_types=0);
 namespace ServiceBus\ArgumentResolver;
 
 use ServiceBus\Common\Context\ServiceBusContext;
+use ServiceBus\Common\MessageHandler\MessageHandlerArgument;
 
 final class ChainArgumentResolver
 {
@@ -29,11 +30,14 @@ final class ChainArgumentResolver
         $this->resolvers = $resolvers;
     }
 
+    /**
+     * @psalm-param \SplObjectStorage<MessageHandlerArgument, null> $arguments
+     */
     public function resolve(\SplObjectStorage $arguments, object $message, ServiceBusContext $context): array
     {
         $preparedArguments = [];
 
-        /** @var \ServiceBus\Common\MessageHandler\MessageHandlerArgument $argument */
+        /** @var MessageHandlerArgument $argument */
         foreach ($arguments as $argument)
         {
             foreach ($this->resolvers as $argumentResolver)
