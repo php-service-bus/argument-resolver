@@ -12,9 +12,9 @@ declare(strict_types=0);
 
 namespace ServiceBus\ArgumentResolver;
 
+use Psr\Container\ContainerInterface;
 use ServiceBus\Common\Context\ServiceBusContext;
 use ServiceBus\Common\MessageHandler\MessageHandlerArgument;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 final class ContainerArgumentResolver implements ArgumentResolver
 {
