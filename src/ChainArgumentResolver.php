@@ -38,12 +38,9 @@ final class ChainArgumentResolver
         $preparedArguments = [];
 
         /** @var MessageHandlerArgument $argument */
-        foreach ($arguments as $argument)
-        {
-            foreach ($this->resolvers as $argumentResolver)
-            {
-                if ($argumentResolver->supports($argument))
-                {
+        foreach ($arguments as $argument) {
+            foreach ($this->resolvers as $argumentResolver) {
+                if ($argumentResolver->supports($argument)) {
                     $preparedArguments[] = $argumentResolver->resolve(
                         message: $message,
                         context: $context,

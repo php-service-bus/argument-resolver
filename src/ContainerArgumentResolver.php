@@ -35,11 +35,7 @@ final class ContainerArgumentResolver implements ArgumentResolver
 
     public function resolve(object $message, ServiceBusContext $context, MessageHandlerArgument $argument): object
     {
-        /**
-         * @noinspection PhpUnnecessaryLocalVariableInspection
-         *
-         * @var object $object
-         */
+        /** @var object $object */
         $object = $this->serviceLocator->get((string) $argument->typeClass);
 
         return $object;

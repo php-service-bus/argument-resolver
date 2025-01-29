@@ -22,8 +22,7 @@ final class ArgumentResolverModule implements ServiceBusModule
 {
     public function boot(ContainerBuilder $containerBuilder): void
     {
-        if ($containerBuilder->hasDefinition('service_bus.services_locator') === false)
-        {
+        if ($containerBuilder->hasDefinition('service_bus.services_locator') === false) {
             $definition = (new Definition(ServiceLocator::class, [[]]))->setPublic(true);
 
             $containerBuilder->addDefinitions(['service_bus.services_locator' => $definition]);
