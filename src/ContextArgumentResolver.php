@@ -15,6 +15,9 @@ namespace ServiceBus\ArgumentResolver;
 use ServiceBus\Common\Context\ServiceBusContext;
 use ServiceBus\Common\MessageHandler\MessageHandlerArgument;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class ContextArgumentResolver implements ArgumentResolver
 {
     public function supports(MessageHandlerArgument $argument): bool

@@ -16,6 +16,9 @@ use Psr\Container\ContainerInterface;
 use ServiceBus\Common\Context\ServiceBusContext;
 use ServiceBus\Common\MessageHandler\MessageHandlerArgument;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class ContainerArgumentResolver implements ArgumentResolver
 {
     /**

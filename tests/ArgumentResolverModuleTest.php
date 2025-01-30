@@ -14,7 +14,11 @@ namespace ServiceBus\ArgumentResolver\Tests;
 
 use PHPUnit\Framework\TestCase;
 use ServiceBus\ArgumentResolver\ArgumentResolverModule;
+use ServiceBus\ArgumentResolver\ContainerArgumentResolver;
+use ServiceBus\ArgumentResolver\ContextArgumentResolver;
+use ServiceBus\ArgumentResolver\MessageArgumentResolver;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ServiceLocator;
 
 final class ArgumentResolverModuleTest extends TestCase
 {
@@ -27,8 +31,16 @@ final class ArgumentResolverModuleTest extends TestCase
 
         (new ArgumentResolverModule())->boot($containerBuilder);
 
+        self::assertTrue($containerBuilder->hasDefinition(MessageArgumentResolver::class));
+        self::assertTrue($containerBuilder->hasDefinition(ContextArgumentResolver::class));
+        self::assertTrue($containerBuilder->hasDefinition(ContainerArgumentResolver::class));
+
         $containerBuilder->compile();
 
-        self::assertTrue(true);
+        self::assertTrue($containerBuilder->hasDefinition('service_bus.services_locator'));
+        self::assertEquals(
+            ServiceLocator::class,
+            $containerBuilder->getDefinition('service_bus.services_locator')->getClass()
+        );
     }
 }
